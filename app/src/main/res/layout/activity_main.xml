@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:background="@drawable/fundoprov"
+    tools:context=".MainActivity">
+
+    <!-- mudar o entre fonte synapse -->
+    <TextView
+        android:id="@+id/signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="ENTRE"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold"/>
+
+    <!-- usuario achar icon de user -->
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="#30ffffff"
+        android:hint="E-mail ou usuário"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/user"
+        android:drawablePadding="20dp" />
+
+    <!-- achar o icon senha -->
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#30ffffff"
+        android:hint="Senha"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/senha"
+        android:drawablePadding="20dp" />
+
+    <!-- botao de entrar -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="ENTRAR"
+        android:textStyle="bold"
+        android:backgroundTint="#0000FF"
+        android:textColor="@color/white"
+        app:cornerRadius="100dp"/>
+
+    <!-- esqueci a senha link(?) -->
+    <TextView
+        android:id="@+id/forgotpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Esqueceu sua senha?"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ou acesse com"
+        android:textColor="#888888"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center" />
+
+    <!--botao google -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/googleLoginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:text="Continue com o Google"
+        android:textSize="14sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#222222"
+        android:icon="@drawable/logingoogle"
+        android:iconPadding="12dp"
+        android:iconGravity="textStart"
+        app:cornerRadius="100dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:elevation="4dp"
+        android:stateListAnimator="@null" />
+
+    <!-- botao de Cadastr -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cadastroBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CADASTRE-SE"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#0000FF"
+        app:cornerRadius="100dp"/>
+</LinearLayout>
+

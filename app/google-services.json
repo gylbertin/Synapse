@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1071862725719",
+    "project_id": "login-b95d5",
+    "storage_bucket": "login-b95d5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071862725719:android:8d418e117f41c2f0af7712",
+        "android_client_info": {
+          "package_name": "com.example.loginbasico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071862725719-bj7sr6qsa8vmh76t0s9dn8pri8h4k9fb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLgs_RDqcDCd36Z0_4tFuUgBe1a74ENBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071862725719-bj7sr6qsa8vmh76t0s9dn8pri8h4k9fb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
