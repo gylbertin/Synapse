@@ -5,6 +5,193 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Tela_Cronograma">
+    android:background="@drawable/fundoprov"
+    android:gravity="center_horizontal"
+    tools:context=".Tela_Principal">
+
+    <!-- mudar o entre fonte synapse -->
+
+    <TextView
+        android:id="@+id/txtHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1hr"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/SBarHoras"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Cronograma"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="215dp"
+        android:text="Você se compremete a estudar em quais dias?"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/BTDomingo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/toggle_button_background"
+        android:text="Dom"
+        android:textOff="Dom"
+        android:textOn="Dom"
+        app:layout_constraintEnd_toStartOf="@+id/BTSegunda"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ToggleButton
+        android:id="@+id/BTSegunda"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/toggle_button_background"
+        android:text="Seg"
+        android:textOff="Seg"
+        android:textOn="Seg"
+        app:layout_constraintEnd_toStartOf="@+id/BTTerca"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/BTDomingo"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ToggleButton
+        android:id="@+id/BTQuinta"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/toggle_button_background"
+        android:text="Qui"
+        android:textOff="Qui"
+        android:textOn="Qui"
+        app:layout_constraintEnd_toStartOf="@+id/BTSexta"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BTSegunda" />
+
+    <ToggleButton
+        android:id="@+id/BTQuarta"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/toggle_button_background"
+        android:text="Qua"
+        android:textOff="Qua"
+        android:textOn="Qua"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/BTTerca"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ToggleButton
+        android:id="@+id/BTSexta"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/toggle_button_background"
+        android:text="Sex"
+        android:textOff="Sex"
+        android:textOn="Sex"
+        app:layout_constraintEnd_toStartOf="@+id/BTSabado"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/BTQuinta"
+        app:layout_constraintTop_toBottomOf="@+id/BTTerca" />
+
+    <ToggleButton
+        android:id="@+id/BTTerca"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/toggle_button_background"
+        android:text="Ter"
+        android:textOff="Ter"
+        android:textOn="Ter"
+        app:layout_constraintEnd_toStartOf="@+id/BTQuarta"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/BTSegunda"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ToggleButton
+        android:id="@+id/BTSabado"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/toggle_button_background"
+        android:text="Sab"
+        android:textOff="Sab"
+        android:textOn="Sab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/BTSexta"
+        app:layout_constraintTop_toBottomOf="@+id/BTTerca" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Quantas horas por dia você                               se disponibiliza?"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BTSexta" />
+
+    <SeekBar
+        android:id="@+id/SBarHoras"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:max="4"
+        android:progress="1"
+        android:progressBackgroundTint="#FFFFFF"
+        android:progressTint="@color/blue"
+        android:thumbTint="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/BTEntrar"
+        android:layout_width="322dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#0000FF"
+        android:text="ENTRAR"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:cornerRadius="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SBarHoras" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

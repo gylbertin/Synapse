@@ -5,6 +5,206 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2C2C2C"
     tools:context=".Tela_Principal">
+
+    <TextView
+        android:id="@+id/textMes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dia_semana_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:textColor="#626161"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dia_semana_5"
+        app:layout_constraintEnd_toStartOf="@+id/dia_semana_7"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dia_semana_5" />
+
+    <TextView
+        android:id="@+id/dia_semana_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:textColor="#626161"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dia_semana_3"
+        app:layout_constraintEnd_toStartOf="@+id/dia_semana_5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dia_semana_3" />
+
+    <TextView
+        android:id="@+id/dia_semana_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:textColor="#626161"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dia_semana_4"
+        app:layout_constraintEnd_toStartOf="@+id/dia_semana_6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dia_semana_4" />
+
+    <TextView
+        android:id="@+id/dia_semana_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="D"
+        android:textColor="#626161"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/dia_semana_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMes" />
+
+    <TextView
+        android:id="@+id/dia_semana_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:textColor="#626161"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dia_semana_1"
+        app:layout_constraintEnd_toStartOf="@+id/dia_semana_3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dia_semana_1" />
+
+    <TextView
+        android:id="@+id/dia_semana_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:textColor="#626161"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dia_semana_2"
+        app:layout_constraintEnd_toStartOf="@+id/dia_semana_4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dia_semana_2" />
+
+    <TextView
+        android:id="@+id/dia_semana_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:textColor="#626161"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dia_semana_6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dia_semana_6" />
+
+    <TextView
+        android:id="@+id/dia_mes_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:text="22"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/dia_mes_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dia_semana_1" />
+
+    <TextView
+        android:id="@+id/dia_mes_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="22"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dia_mes_1"
+        app:layout_constraintEnd_toStartOf="@+id/dia_mes_3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dia_mes_1" />
+
+    <TextView
+        android:id="@+id/dia_mes_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="22"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dia_mes_2"
+        app:layout_constraintEnd_toStartOf="@+id/dia_mes_4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dia_mes_2" />
+
+    <TextView
+        android:id="@+id/dia_mes_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="22"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dia_mes_3"
+        app:layout_constraintEnd_toStartOf="@+id/dia_mes_5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dia_mes_3" />
+
+    <TextView
+        android:id="@+id/dia_mes_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="22"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dia_mes_4"
+        app:layout_constraintEnd_toStartOf="@+id/dia_mes_6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dia_mes_4" />
+
+    <TextView
+        android:id="@+id/dia_mes_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="22"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dia_mes_5"
+        app:layout_constraintEnd_toStartOf="@+id/dia_mes_7"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dia_mes_5" />
+
+    <TextView
+        android:id="@+id/dia_mes_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="22"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dia_mes_6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dia_mes_6" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_conteudo"
+        android:layout_width="412dp"
+        android:layout_height="221dp"
+        android:layout_marginTop="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dia_mes_4"
+        tools:listitem="@layout/item_conteudo_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

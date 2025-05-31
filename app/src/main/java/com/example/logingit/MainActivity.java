@@ -1,7 +1,9 @@
 package com.example.logingit;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     EditText txtEmail, txtSenha;
     MaterialButton btnLogin, btnCadastro, googleLoginBtn;
+    BancoControllerUsuario bd;
+    Integer _Usuario, cod_Cronograma, cod_Exame;
+
 
 
     @Override
@@ -48,6 +53,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
+        SharedPreferences prefs = getSharedPreferences("app", MODE_PRIVATE);
+        if (!prefs.getBoolean("dados_inseridos", false)) {
+            DataBaseBanco.carregarDadosDoJson(this);
+            prefs.edit().putBoolean("dados_inseridos", true).apply();
+        }
+
         txtEmail = findViewById(R.id.txtEmail);
         txtSenha = findViewById(R.id.txtSenha);
         btnLogin = findViewById(R.id.btnLogin);
@@ -55,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnLogin.setOnClickListener(this);
         btnCadastro.setOnClickListener(this);
+
+
 
         // firebase
         mAuth = FirebaseAuth.getInstance();
@@ -98,9 +111,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
             retorno = false;
         }
-        BancoControllerUsuario bd = new BancoControllerUsuario(getBaseContext());
+        BancoControllerUsuario db = new BancoControllerUsuario(getBaseContext());
 
-        Cursor dados = bd.ConsultaDadosLogin(_email, _senha);
+        Cursor dados = db.ConsultaDadosLogin(_email, _senha);
 
         if(dados.moveToFirst()) {
             retorno = true;
@@ -143,7 +156,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v.getId()==R.id.btnLogin){
             if (validaLogin()) {
+                Cursor exame = bd.ConsultaCodigo(txtEmail.toString(), txtSenha.toString());
+                if (exame.moveToFirst()) {
+                    _Usuario = exame.getInt(1);
+                    cod_Exame = exame.getInt(2);
+                }
+                Cursor cronograma = bd.ConsultaCodigoCronograma(_Usuario);
+                if (cronograma.moveToFirst()) {
+                    cod_Cronograma = cronograma.getInt(1);
+                }
+
                 Intent tela = new Intent(MainActivity.this, Tela_Principal.class);
+                Bundle parametros = new Bundle();
+                parametros.putInt("cod_Cronograma", cod_Cronograma);
+                parametros.putInt("cod_Exame", cod_Exame);
+                tela.putExtras(parametros);
                 startActivity(tela);
             }
         }

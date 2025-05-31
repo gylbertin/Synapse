@@ -10,7 +10,7 @@
     android:padding="24dp"
     android:gravity="center_horizontal"
     android:background="@drawable/fundoprov"
-    tools:context=".MainActivity">
+    tools:context=".Tela_Principal">
 
     <!-- mudar o entre fonte synapse -->
     <TextView

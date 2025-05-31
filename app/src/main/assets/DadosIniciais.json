@@ -1,0 +1,428 @@
+{
+    "exames": [
+        {
+            "id": 1,
+            "nome": "Enem",
+            "dia_final": "2025-11-05"
+        }
+    ],
+    "materias": [
+        {
+            "id": 1,
+            "nome": "Matematica",
+            "cor": "#B22222"
+        },
+        {
+            "id": 2,
+            "nome": "Historia",
+            "cor": "#8B4513"
+        },
+        {
+            "id": 3,
+            "nome": "Portugues",
+            "cor": "#00FA9A"
+        },
+        {
+            "id": 4,
+            "nome": "Biologia",
+            "cor": "#008000"
+        },
+        {
+            "id": 5,
+            "nome": "Quimica",
+            "cor": "#FFFF00"
+        },
+        {
+            "id": 6,
+            "nome": "Geografia",
+            "cor": "#FF8C00"
+        },
+        {
+            "id": 7,
+            "nome": "Fisica",
+            "cor": "#7B68EE"
+        },
+        {
+            "id": 8,
+            "nome": "Sociologia",
+            "cor": "#D2691E"
+        },
+        {
+            "id": 9,
+            "nome": "Filosofia",
+            "cor": "#F5F5F5"
+        },
+        {
+            "id": 10,
+            "nome": "Literatura",
+            "cor": "#8B008B"
+        },
+        {
+            "id": 11,
+            "nome": "Redacao",
+            "cor": "#1E90FF"
+        }
+    ],
+    "conteudos": [
+        {
+            "nome": "Leitura e interpretacao de texto",
+            "cod_materia": 3,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Porcentagem, razao e proporcao",
+            "cod_materia": 1,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Ecologia e cadeias alimentares",
+            "cod_materia": 4,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Revolucao Industrial e capitalismo",
+            "cod_materia": 2,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Generos textuais",
+            "cod_materia": 3,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Tabela periodica e propriedades dos elementos",
+            "cod_materia": 5,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Cinematica: movimento uniforme e acelerado",
+            "cod_materia": 7,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Clima e vegetacao do Brasil",
+            "cod_materia": 6,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Funcoes da linguagem",
+            "cod_materia": 3,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Escravidao e economia colonial",
+            "cod_materia": 2,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Figuras de linguagem",
+            "cod_materia": 3,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Funcoes de primeiro e segundo grau",
+            "cod_materia": 1,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Citologia: organelas e membranas",
+            "cod_materia": 4,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Globalizacao e espaco geografico",
+            "cod_materia": 6,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Ligacoes quimicas",
+            "cod_materia": 5,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Leis de Newton",
+            "cod_materia": 7,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Variacao linguistica e norma culta",
+            "cod_materia": 3,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Redacao: estrutura dissertativo-argumentativa",
+            "cod_materia": 11,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Iluminismo e Revolucao Francesa",
+            "cod_materia": 2,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Funcoes inorganicas (acidos, bases, sais)",
+            "cod_materia": 5,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Fisiologia humana: sistemas (digestorio, respiratorio etc.)",
+            "cod_materia": 4,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Progressao aritmetica e geometrica",
+            "cod_materia": 1,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Industrializacao e urbanizacao no Brasil",
+            "cod_materia": 6,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Termoquimica",
+            "cod_materia": 5,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Energia e trabalho",
+            "cod_materia": 7,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Genetica: hereditariedade e primeira lei de Mendel",
+            "cod_materia": 4,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Redacao: repertorio sociocultural",
+            "cod_materia": 11,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Brasil Imperio e abolicao da escravidao",
+            "cod_materia": 2,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Coesao e coerencia textual",
+            "cod_materia": 3,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Trigonometria basica",
+            "cod_materia": 1,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Modernismo no Brasil",
+            "cod_materia": 10,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Reacoes quimicas",
+            "cod_materia": 5,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Eletrodinamica: corrente, resistencia, potencia",
+            "cod_materia": 7,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Probabilidade e analise combinatoria",
+            "cod_materia": 1,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Filosofia: Socrates, Platao e Aristoteles",
+            "cod_materia": 9,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Quimica organica: funcoes e isomeria ",
+            "cod_materia": 5,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Genetica: segunda lei de Mendel e mutacoes",
+            "cod_materia": 4,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Segunda Guerra Mundial e nazifascismo",
+            "cod_materia": 2,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Reacoes organicas",
+            "cod_materia": 5,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Leitura e interpretacao de graficos e tabelas",
+            "cod_materia": 1,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Redacao: analise de propostas de tema",
+            "cod_materia": 11,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Urbanizacao e problemas socioambientais",
+            "cod_materia": 6,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Sociologia: cultura, identidade, preconceito",
+            "cod_materia": 8,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Ondulatoria: som, luz e ondas mecanicas ",
+            "cod_materia": 7,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Estatistica basica: media, moda, mediana",
+            "cod_materia": 1,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Evolucao e selecao natural ",
+            "cod_materia": 4,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Filosofia moderna: Descartes e Kant",
+            "cod_materia": 9,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Ditadura militar no Brasil ",
+            "cod_materia": 2,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Redacao: pratica semanal com correcao",
+            "cod_materia": 11,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Atualidades e geopolitica",
+            "cod_materia": 6,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Literatura contemporanea",
+            "cod_materia": 10,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Filosofia contemporanea: Nietzsche, Foucault ",
+            "cod_materia": 9,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Democracia, cidadania e direitos humanos",
+            "cod_materia": 8,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Eletromagnetismo",
+            "cod_materia": 7,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Logaritmos e funcoes exponenciais",
+            "cod_materia": 1,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Biotecnologia e transgenicos",
+            "cod_materia": 4,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Crises do seculo XX (Guerra Fria, mundo bipolar)",
+            "cod_materia": 2,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Quimica ambiental: poluicao, lixo, agua",
+            "cod_materia": 5,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Redacao: estrategias de argumentacao",
+            "cod_materia": 11,
+            "status": 0,
+            "cod_exame": 1
+        },
+        {
+            "nome": "Filosofia politica: Hobbes, Locke, Rousseau",
+            "cod_materia": 9,
+            "status": 0,
+            "cod_exame": 1
+        }
+    ]
+}

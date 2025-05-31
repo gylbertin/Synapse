@@ -135,6 +135,10 @@ public class Tela_Cadastro extends AppCompatActivity implements View.OnClickList
                             Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
                             Intent tela = new Intent(Tela_Cadastro.this, Tela_Cronograma.class);
+                            Bundle parametros = new Bundle();
+                            parametros.putString("email", _email);
+                            parametros.putString("senha", _senha);
+                            tela.putExtras(parametros);
                             startActivity(tela);
                         }
                     }

@@ -3,6 +3,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class BancoController {
     private SQLiteDatabase db;
@@ -49,7 +50,7 @@ public class BancoController {
     }
 
     public String alteraDados(String username, String email, String senha) {
-        String msg = "Dadis alterados com sucesso!!";
+        String msg = "Dados alterados com sucesso!!";
         db = banco.getReadableDatabase();
 
         ContentValues valores = new ContentValues();
@@ -87,5 +88,8 @@ public class BancoController {
         db.close();
         return msg;
     }
+
+
+
 
 }

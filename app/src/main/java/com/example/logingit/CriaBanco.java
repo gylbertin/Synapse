@@ -1,6 +1,7 @@
 package com.example.logingit;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -9,11 +10,12 @@ import androidx.annotation.Nullable;
 public class CriaBanco extends SQLiteOpenHelper {
     private static final String NOME_BANCO = "banco_Synapse.db";
 
-    private static final int VERSAO = 1;
+    private static final int VERSAO = 5;
+    private Context context;
 
     public CriaBanco(@Nullable Context context) {
         super(context, NOME_BANCO, null, VERSAO);
-
+        this.context = context;
     }
 
     @Override
@@ -21,7 +23,7 @@ public class CriaBanco extends SQLiteOpenHelper {
         String sql = "CREATE TABLE Exame ("
                 + "cod_Exame integer primary key autoincrement,"
                 + "nome_Exame text not null,"
-                + "dia_Final text unique not null)";
+                + "dia_Final text not null)";
         db.execSQL(sql);
 
         sql = "CREATE TABLE Usuario ("
@@ -29,8 +31,8 @@ public class CriaBanco extends SQLiteOpenHelper {
                 + "nome_Usuario TEXT, "
                 + "email TEXT UNIQUE NOT NULL, "
                 + "senha TEXT NOT NULL, "
-                + "cod_Exame INT, "
-                + "data_Criacao DATETIME DEFAULT CURRENT_TIMESTAMP, "
+                + "cod_Exame INT DEFAULT 1, "
+                + "data_Criacao text DEFAULT CURRENT_TIMESTAMP, "
                 + "FOREIGN KEY (cod_Exame) REFERENCES Exame(cod_Exame)"
                 + ")";
         db.execSQL(sql);
@@ -38,19 +40,18 @@ public class CriaBanco extends SQLiteOpenHelper {
         sql = "CREATE TABLE Cronograma ("
                 + "cod_Cronograma integer primary key autoincrement,"
                 + "cod_Usuario integer,"
-                + "data_Criacao date,"
+                + "data_Criacao text DEFAULT CURRENT_TIMESTAMP,"
                 + "horas_Diarias int not null,"
-                + "cod_Exame int,"
+                + "cod_Exame integer,"
                 + "foreign key (cod_Usuario) references Usuario(cod_Usuario),"
-                + "foreign key (cod_Exame) references Exame(cod_Exame),"
-                + "foreign key (data_Criacao) references Usuario(data_Criacao))";
+                + "foreign key (cod_Exame) references Exame(cod_Exame))";
         db.execSQL(sql);
 
         sql = "CREATE TABLE Cronograma_dia ("
                 + "cod_Dia integer primary key autoincrement,"
-                + "cod_Cronograma int,"
+                + "cod_Cronograma integer,"
                 + "dia_Semana text not null, "
-                + "dia_Estudo integer not null check(dia_Estudo(0,1)),"
+                + "dia_Estudo integer not null check(dia_Estudo in (0,1)),"
                 + "foreign key (cod_Cronograma) references Cronograma(cod_Cronograma))";
         db.execSQL(sql);
 
@@ -64,7 +65,7 @@ public class CriaBanco extends SQLiteOpenHelper {
                 + "cod_Conteudo integer primary key autoincrement,"
                 + "nome_Conteudo text not null,"
                 + "cod_Materia integer,"
-                + "status enum not null,"
+                + "concluido boolean not null default 0 check (concluido in (0, 1)),"
                 + "cod_Exame integer,"
                 + "foreign key (cod_Materia) references Materia(cod_Materia),"
                 + "foreign key (cod_Exame) references Exame(cod_Exame))";
@@ -102,6 +103,8 @@ public class CriaBanco extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Questao");
         db.execSQL("DROP TABLE IF EXISTS Redacao");
         onCreate(db);
+        SharedPreferences prefs = context.getSharedPreferences("app", Context.MODE_PRIVATE);
+        prefs.edit().putBoolean("dados_inseridos", false).apply();
 
     }
 
