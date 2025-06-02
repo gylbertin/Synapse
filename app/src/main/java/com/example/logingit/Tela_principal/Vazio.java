@@ -1,4 +1,4 @@
-package com.example.logingit;
+package com.example.logingit.Tela_principal;
 
 public class Vazio {
     public String titulo;

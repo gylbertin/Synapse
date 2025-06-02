@@ -1,4 +1,4 @@
-package com.example.logingit;
+package com.example.logingit.Banco;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public class CriaBanco extends SQLiteOpenHelper {
     private static final String NOME_BANCO = "banco_Synapse.db";
 
-    private static final int VERSAO = 5;
+    private static final int VERSAO = 6;
     private Context context;
 
     public CriaBanco(@Nullable Context context) {
@@ -73,6 +73,8 @@ public class CriaBanco extends SQLiteOpenHelper {
 
         sql = "CREATE TABLE Questao ("
                 + "cod_Questao integer primary key autoincrement,"
+                + "materia text not null,"
+                + "conteudo text not null,"
                 + "num_Pergunta integer not null,"
                 + "num_Acerto integer default 0,"
                 + "media decimal(2,2) default 0.00,"

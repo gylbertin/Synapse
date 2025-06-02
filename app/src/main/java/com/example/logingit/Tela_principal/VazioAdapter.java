@@ -1,4 +1,4 @@
-package com.example.logingit;
+package com.example.logingit.Tela_principal;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import com.example.logingit.R;
 
 public class VazioAdapter extends RecyclerView.Adapter<VazioAdapter.ViewHolder> {
 

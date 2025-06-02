@@ -1,4 +1,4 @@
-package com.example.logingit;
+package com.example.logingit.Tela_principal;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.logingit.Banco.BancoControllerConteudo;
+import com.example.logingit.R;
 
 import java.util.List;
 

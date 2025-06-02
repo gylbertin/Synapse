@@ -1,10 +1,9 @@
-package com.example.logingit;
+package com.example.logingit.Banco;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.os.IResultReceiver;
 import android.util.Log;
 
 public class BancoControllerUsuario {
@@ -117,10 +116,10 @@ public class BancoControllerUsuario {
         return cursor;
     }
 
-    public Cursor ConsultaHoraDiarias (Integer _cod_Cronograma) {
+    public Cursor ConsultaHoraDiarias (Integer _cod_Cronograma, Integer _cod_Usuario) {
         Cursor cursor;
         String[] campos = {"horas_Diarias"};
-        String where = "cod_Cronograma = '" + _cod_Cronograma + "'";
+        String where = "cod_Cronograma = '" + _cod_Cronograma + "' and cod_Usuario = '" + _cod_Usuario + "'";
         db = banco.getWritableDatabase();
 
         cursor = db.query("Cronograma", campos, where, null, null, null, null, null);
@@ -129,5 +128,42 @@ public class BancoControllerUsuario {
         }
         db.close();
         return cursor;
+    }
+
+    public String trocaNome(String _nome_Usuario, int cod_Usuario) {
+        String msg = "Dados alterados com sucesso!!";
+        db = banco.getReadableDatabase();
+
+        ContentValues valores = new ContentValues();
+        valores.put("nome_Usuario", _nome_Usuario);
+
+        String condicao = "cod_Usuario =" + cod_Usuario;
+
+        int linha;
+
+        linha = db.update("Usuario", valores, condicao, null);
+
+        if (linha < 1) {
+            msg = "Erro ao alterar os dados";
+        }
+
+        db.close();
+        return msg;
+    }
+
+    public String puxaNome(int _cod_Usuario) {
+        String nome = "";
+        Cursor cursor;
+        String[] campos = {"nome_Usuario"};
+        String where = "cod_Usuario = '" + _cod_Usuario + "'";
+        db = banco.getWritableDatabase();
+
+        cursor = db.query("Usuario", campos, where, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            int seletor = cursor.getColumnIndex("cod_Usuario");
+            nome = cursor.getString(seletor);
+        }
+        db.close();
+        return nome;
     }
 }

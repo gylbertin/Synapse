@@ -15,20 +15,35 @@
         android:theme="@style/Theme.Logingit"
         tools:targetApi="31">
         <activity
-            android:name=".Tela_configuracao"
+            android:name=".Tela_Historico_Questao"
             android:exported="false" />
         <activity
-            android:name=".Tela_Cronograma"
+            android:name=".Tela_Historico_redacoes"
+            android:exported="false" />
+        <activity
+            android:name=".Tela_Redacao"
+            android:exported="false" />
+        <activity
+            android:name=".Tela_Questao.Tela_Resolucao"
+            android:exported="false" />
+        <activity
+            android:name=".Tela_Questao.Tela_GeraQuestoes"
+            android:exported="false" />
+        <activity
+            android:name=".Configuracao.Tela_configuracao"
+            android:exported="false" />
+        <activity
+            android:name=".Cronograma.Tela_Cronograma"
             android:exported="false"
             android:theme="@style/Theme.Logingit" />
         <activity
-            android:name=".Tela_Principal"
+            android:name=".Tela_principal.Tela_Principal"
             android:exported="false" />
         <activity
-            android:name=".Tela_Cadastro"
+            android:name=".Cadastro.Tela_Cadastro"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Login.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

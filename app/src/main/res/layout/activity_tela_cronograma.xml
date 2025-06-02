@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fundoprov"
     android:gravity="center_horizontal"
-    tools:context=".Tela_Principal">
+    tools:context=".Tela_principal.Tela_Principal">
 
     <!-- mudar o entre fonte synapse -->
 

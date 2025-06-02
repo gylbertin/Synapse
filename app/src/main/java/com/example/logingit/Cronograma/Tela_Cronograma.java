@@ -1,9 +1,8 @@
-package com.example.logingit;
+package com.example.logingit.Cronograma;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -16,6 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.logingit.Banco.BancoControllerUsuario;
+import com.example.logingit.R;
+import com.example.logingit.Tela_principal.Tela_Principal;
 
 import java.time.DayOfWeek;
 import java.util.ArrayList;
@@ -151,6 +154,7 @@ public class Tela_Cronograma extends AppCompatActivity implements View.OnClickLi
             Bundle parametros = new Bundle();
             parametros.putInt("cod_Cronograma", cod_Cronograma);
             parametros.putInt("cod_Exame", cod_Exame);
+            parametros.putInt("cod_Usuario", cod_Usuario);
             tela.putExtras(parametros);
             startActivity(tela);
 

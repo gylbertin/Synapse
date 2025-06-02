@@ -1,6 +1,7 @@
-package com.example.logingit;
+package com.example.logingit.Cadastro;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,6 +13,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.logingit.Banco.BancoControllerUsuario;
+import com.example.logingit.Login.MainActivity;
+import com.example.logingit.R;
+import com.example.logingit.Cronograma.Tela_Cronograma;
+import com.example.logingit.Tela_principal.Tela_Principal;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -21,6 +27,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class Tela_Cadastro extends AppCompatActivity implements View.OnClickListener {
@@ -29,6 +36,8 @@ public class Tela_Cadastro extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mAuth;
     EditText txtEmail, txtUsername, txtSenha, txtConfSenha;
     MaterialButton cadastroBtn, googleLoginBtn;
+    Integer _Usuario, cod_Cronograma, cod_Exame;
+    BancoControllerUsuario bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +101,48 @@ public class Tela_Cadastro extends AppCompatActivity implements View.OnClickList
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(this, "Login com Google bem sucedido!", Toast.LENGTH_SHORT).show();
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                        if (user != null) {
+                            Toast.makeText(this, "Login com Google bem sucedido!", Toast.LENGTH_SHORT).show();
+                            String nome = user.getDisplayName();
+                            String email = user.getEmail();
+                            String uid = user.getUid();
+
+                            Cursor dados = bd.ConsultaCodigo(email, uid);
+
+                            if (dados.moveToFirst()) {
+                                int seletor = dados.getColumnIndex("cod_Usuario");
+                                int seletor2 = dados.getColumnIndex("cod_Exame");
+                                _Usuario = dados.getInt(seletor);
+                                cod_Exame = dados.getInt(seletor2);
+
+                                Cursor cronograma = bd.ConsultaCodigoCronograma(_Usuario);
+                                if (cronograma.moveToFirst()) {
+                                    int seletor3 = cronograma.getColumnIndex("cod_Cronograma");
+                                    cod_Cronograma = cronograma.getInt(seletor);
+                                }
+
+                                Intent tela = new Intent(Tela_Cadastro.this, Tela_Principal.class);
+                                Bundle parametros = new Bundle();
+                                parametros.putInt("cod_Cronograma", cod_Cronograma);
+                                parametros.putInt("cod_Exame", cod_Exame);
+                                tela.putExtras(parametros);
+                                startActivity(tela);
+
+                            } else {
+                                bd.insereDados(email, nome, uid);
+
+                                Intent tela = new Intent(Tela_Cadastro.this, Tela_Cronograma.class);
+                                Bundle parametros = new Bundle();
+                                parametros.putString("email", email);
+                                parametros.putString("senha", uid);
+                                tela.putExtras(parametros);
+                                startActivity(tela);
+                            }
+
+
+                        }
                     } else {
                         Toast.makeText(this, "Erro ao autenticar", Toast.LENGTH_SHORT).show();
                     }

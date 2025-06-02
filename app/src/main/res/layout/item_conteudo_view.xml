@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#2C2C2C">
+    android:background="@android:color/transparent">
 
     <RadioButton
         android:id="@+id/btConteudo"
@@ -16,6 +16,11 @@
         android:text="RadioButton"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:paddingStart="2dp"
+        android:paddingEnd="5dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

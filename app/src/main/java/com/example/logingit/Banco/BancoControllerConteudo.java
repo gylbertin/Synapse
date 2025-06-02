@@ -1,12 +1,13 @@
-package com.example.logingit;
+package com.example.logingit.Banco;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
-import java.time.DayOfWeek;
+import com.example.logingit.Tela_principal.Conteudo;
+import com.example.logingit.Tela_Questao.Materia;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -91,6 +92,44 @@ public class BancoControllerConteudo {
         }
         cursor.close();
         return permitido;
+    }
+
+    public List<Materia> getTodasMaterias() {
+        List<Materia> lista = new ArrayList<>();
+        db = banco.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM Materia",null);
+        if (cursor.moveToNext()) {
+            int seletor1 = cursor.getColumnIndex("cod_Materia");
+            int seletor2 = cursor.getColumnIndex("nome_Materia");
+            int seletor3 = cursor.getColumnIndex("cor");
+            Materia materia = new Materia();
+            materia.id = cursor.getInt(seletor1);
+            materia.nome = cursor.getString(seletor2);
+            materia.cor = cursor.getString(seletor2);
+            lista.add(materia);
+        }
+        cursor.close();
+        return lista;
+    }
+
+    public List<Conteudo> getConteudoPorMateria(int idMateria) {
+        List<Conteudo> lista = new ArrayList<>();
+        db = banco.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT cod_Conteudo, nome_Conteudo, cod_Materia FROM Conteudo  WHERE cod_Materia = ? ORDER BY cod_Conteudo", new String[]{String.valueOf(idMateria)});
+        while (cursor.moveToNext()) {
+            int seletor = cursor.getColumnIndex("cod_Conteudo");
+            int seletor2 = cursor.getColumnIndex("nome_Conteudo");
+            int seletor3 = cursor.getColumnIndex("cod_Materia");
+            Conteudo cont = new Conteudo();
+            cont.id = cursor.getInt(seletor);
+            cont.nome = cursor.getString(seletor2);
+            cont.materia = cursor.getString(seletor3);
+            lista.add(cont);
+        }
+        cursor.close();
+        return lista;
     }
 
     public Map<String, List<Conteudo>> distruibuirConteudo(int limiteDiario) {

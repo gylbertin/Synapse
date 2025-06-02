@@ -1,4 +1,4 @@
-package com.example.logingit;
+package com.example.logingit.Tela_principal;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,6 +14,15 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.logingit.Banco.BancoControllerConteudo;
+import com.example.logingit.Banco.BancoControllerUsuario;
+import com.example.logingit.Cronograma.OrganizadorCalendario;
+import com.example.logingit.R;
+import com.example.logingit.Tela_Questao.Tela_GeraQuestoes;
+import com.example.logingit.Configuracao.Tela_configuracao;
+import com.example.logingit.Tela_Redacao;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -28,9 +37,9 @@ public class Tela_Principal extends AppCompatActivity implements View.OnClickLis
     BancoControllerConteudo bd;
     int horas_diarias;
     BancoControllerUsuario bancoController;
-    Integer cod_Cronograma, cod_Exame;
+    Integer cod_Cronograma, cod_Exame, cod_Usuario;
     VazioAdapter adapterVazio;
-
+    private BottomNavigationView bottom_navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +52,7 @@ public class Tela_Principal extends AppCompatActivity implements View.OnClickLis
             return insets;
         });
         textMes = findViewById(R.id.textMes);
+        bottom_navigation = findViewById(R.id.bottom_navigation);
 
         OrganizadorCalendario.preencheMes(textMes);
 
@@ -87,6 +97,44 @@ public class Tela_Principal extends AppCompatActivity implements View.OnClickLis
         dia_mes_6.setOnClickListener(this);
         dia_mes_7.setOnClickListener(this);
 
+        bottom_navigation.setSelectedItemId(R.id.nav_home);
+
+        bottom_navigation.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.nav_home) {
+                return true;
+            } else if (itemId == R.id.nav_questoes) {
+                Intent tela = new Intent(Tela_Principal.this, Tela_GeraQuestoes.class);
+                Bundle parametros = new Bundle();
+                parametros.putInt("cod_Usuario",cod_Usuario);
+                parametros.putInt("cod_Cronograma", cod_Cronograma);
+                tela.putExtras(parametros);
+                startActivity(tela);
+                overridePendingTransition(0, 0);
+                return true;
+            } else if (itemId == R.id.nav_perfil) {
+                Intent tela = new Intent(Tela_Principal.this, Tela_configuracao.class);
+                Bundle parametros = new Bundle();
+                parametros.putInt("cod_Usuario",cod_Usuario);
+                parametros.putInt("cod_Cronograma", cod_Cronograma);
+                tela.putExtras(parametros);
+                startActivity(tela);
+                overridePendingTransition(0, 0);
+                return true;
+            } else if (itemId == R.id.nav_Redacao) {
+                Intent tela = new Intent(Tela_Principal.this, Tela_Redacao.class);
+                Bundle parametros = new Bundle();
+                parametros.putInt("cod_Usuario",cod_Usuario);
+                parametros.putInt("cod_Cronograma", cod_Cronograma);
+                tela.putExtras(parametros);
+                startActivity(tela);
+                overridePendingTransition(0, 0);
+                return true;
+            }
+
+            return false;
+        });
 
 
     }
@@ -99,10 +147,11 @@ public class Tela_Principal extends AppCompatActivity implements View.OnClickLis
         Bundle parametro = tela.getExtras();
         cod_Cronograma = parametro.getInt("cod_Cronograma");
         cod_Exame = parametro.getInt("cod_Exame");
+        cod_Usuario = parametro.getInt("cod_Usuario");
 
         bancoController = new BancoControllerUsuario(this);
 
-        Cursor horas = bancoController.ConsultaHoraDiarias(cod_Cronograma);
+        Cursor horas = bancoController.ConsultaHoraDiarias(cod_Cronograma, cod_Usuario);
 
         if (horas.moveToFirst()) {
             int seletor = horas.getColumnIndex("horas_Diarias");

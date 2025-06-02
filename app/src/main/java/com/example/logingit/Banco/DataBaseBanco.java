@@ -1,4 +1,4 @@
-package com.example.logingit;
+package com.example.logingit.Banco;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

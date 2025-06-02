@@ -1,4 +1,4 @@
-package com.example.logingit;
+package com.example.logingit.Configuracao;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +12,14 @@ import android.widget.*;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.logingit.Banco.BancoController;
+import com.example.logingit.Banco.BancoControllerUsuario;
+import com.example.logingit.R;
+import com.example.logingit.Tela_Questao.Tela_GeraQuestoes;
+import com.example.logingit.Tela_Redacao;
+import com.example.logingit.Tela_principal.Tela_Principal;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.io.IOException;
 
 public class Tela_configuracao extends AppCompatActivity {
@@ -24,11 +32,25 @@ public class Tela_configuracao extends AppCompatActivity {
     private Button deleteButton;
     private SharedPreferences prefs;
     private Uri imageUri = null;
+    private int cod_Usuario, cod_Cronograma;
+
+    BancoControllerUsuario bancoUsuario;
+
+    private BottomNavigationView bottom_navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_configuracao);
+
+        Intent intent = getIntent();
+        Bundle dados = intent.getExtras();
+        cod_Usuario = dados.getInt("cod_Usuario");
+        cod_Cronograma = dados.getInt("cod_Cronograma");
+
+
+        BancoControllerUsuario bancoUsuario = new BancoControllerUsuario(this);
+        BancoController banco = new BancoController(this);
 
         // Conectando os elementos do layout
         profileImage = findViewById(R.id.profile_image);
@@ -36,6 +58,7 @@ public class Tela_configuracao extends AppCompatActivity {
         editButton = findViewById(R.id.edit_button);
         saveButton = findViewById(R.id.save_button);
         deleteButton = findViewById(R.id.delete_account);
+        bottom_navigation = findViewById(R.id.bottom_navigation);
 
         prefs = getSharedPreferences("userPrefs", MODE_PRIVATE);
         loadProfileData();
@@ -47,6 +70,47 @@ public class Tela_configuracao extends AppCompatActivity {
             usernameEdit.setBackground(null); // Remove o fundo da borda
             saveButton.setVisibility(View.GONE);
             editButton.setVisibility(View.VISIBLE);
+
+
+        });
+
+        bottom_navigation.setSelectedItemId(R.id.nav_perfil);
+
+        bottom_navigation.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.nav_perfil) {
+                return true;
+            } else if (itemId == R.id.nav_questoes) {
+                Intent tela = new Intent(Tela_configuracao.this, Tela_GeraQuestoes.class);
+                Bundle parametros = new Bundle();
+                parametros.putInt("cod_Usuario",cod_Usuario);
+                parametros.putInt("cod_Cronograma", cod_Cronograma);
+                tela.putExtras(parametros);
+                startActivity(tela);
+                overridePendingTransition(0, 0);
+                return true;
+            } else if (itemId == R.id.nav_home) {
+                Intent tela = new Intent(Tela_configuracao.this, Tela_Principal.class);
+                Bundle parametros = new Bundle();
+                parametros.putInt("cod_Usuario",cod_Usuario);
+                parametros.putInt("cod_Cronograma", cod_Cronograma);
+                tela.putExtras(parametros);
+                startActivity(tela);
+                overridePendingTransition(0, 0);
+                return true;
+            } else if (itemId == R.id.nav_Redacao) {
+                Intent tela = new Intent(Tela_configuracao.this, Tela_Redacao.class);
+                Bundle parametros = new Bundle();
+                parametros.putInt("cod_Usuario",cod_Usuario);
+                parametros.putInt("cod_Cronograma", cod_Cronograma);
+                tela.putExtras(parametros);
+                startActivity(tela);
+                overridePendingTransition(0, 0);
+                return true;
+            }
+
+            return false;
         });
 
         // Botão de lápis para editar
@@ -60,7 +124,7 @@ public class Tela_configuracao extends AppCompatActivity {
 
         // Botão de deletar conta
         deleteButton.setOnClickListener(v -> {
-            prefs.edit().clear().apply();
+            String msg = banco.excluirDados(cod_Usuario,cod_Cronograma);
             usernameEdit.setText("");
             profileImage.setImageResource(R.drawable.imagem_perfil);
             Toast.makeText(this, "Conta removida", Toast.LENGTH_SHORT).show();
@@ -92,12 +156,14 @@ public class Tela_configuracao extends AppCompatActivity {
 
     private void saveProfileData() {
         String name = usernameEdit.getText().toString();
-        prefs.edit().putString("username", name).apply();
-        Toast.makeText(this, "Salvo!", Toast.LENGTH_SHORT).show();
+
+        String msg = bancoUsuario.trocaNome(name,cod_Usuario);
+
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     private void loadProfileData() {
-        String name = prefs.getString("username", "User.123");
+        String name = bancoUsuario.puxaNome(cod_Usuario);
         usernameEdit.setText(name);
 
         // Começa com nome não editável

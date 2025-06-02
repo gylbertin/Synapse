@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/calendar"
+        android:title="Cronograma"
+
+        />
+    <item
+        android:id="@+id/nav_questoes"
+        android:icon="@drawable/checked"
+        android:title="Questões" />
+    <item
+        android:id="@+id/nav_Redacao"
+        android:icon="@drawable/paper"
+        android:title="Redação"
+        />
+    <item
+        android:id="@+id/nav_perfil"
+        android:icon="@drawable/perfil_menu"
+        android:title="Perfil" />
+</menu>

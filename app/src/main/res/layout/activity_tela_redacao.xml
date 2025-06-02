@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/redacaoMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212">
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REDAÇÃO"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="16dp" />
+
+    <ImageButton
+        android:id="@+id/btnHistorico"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_history"
+        android:contentDescription="Ver histórico"
+        app:layout_constraintTop_toTopOf="@id/titulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
+
+    <TextView
+        android:id="@+id/labelTema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tema:"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/titulo"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
+
+    <ImageButton
+        android:id="@+id/btnGerarTema"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Gerar novo tema"
+        android:src="@drawable/ic_refresh"
+        app:layout_constraintBottom_toBottomOf="@+id/labelTema"
+        app:layout_constraintStart_toEndOf="@id/labelTema"
+        app:layout_constraintTop_toTopOf="@id/labelTema" />
+
+    <TextView
+        android:id="@+id/txtTema"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Fome: Um Desafio Humanitário e Social."
+        android:textColor="@android:color/white"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/labelTema"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:padding="8dp"
+        android:background="@drawable/borda_azul" />
+
+    <EditText
+        android:id="@+id/editRedacao"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/white"
+        android:gravity="top"
+        android:hint="Digite sua redação aqui..."
+        android:inputType="textMultiLine"
+        android:maxLines="15"
+        android:minLines="10"
+        android:padding="12dp"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/txtTema"
+        app:layout_constraintBottom_toTopOf="@id/btnEnviar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
+
+    <Button
+        android:id="@+id/btnEnviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#4444FF"
+        android:text="Enviar"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        app:itemBackground="@drawable/seletor_navigation_background"
+        app:itemIconSize="25dp"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_nav_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

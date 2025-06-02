@@ -1,9 +1,8 @@
-package com.example.logingit;
+package com.example.logingit.Banco;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 public class BancoController {
     private SQLiteDatabase db;
@@ -71,18 +70,25 @@ public class BancoController {
         return msg;
     }
 
-    public String excluirDados (String email) {
+    public String excluirDados (Integer _cod_Usuario, Integer _cod_Cronograma) {
         String msg = "Registro Excluido";
 
         db = banco.getReadableDatabase();
 
-        String condicao = "email =" + email;
+        String cod_Usuario = _cod_Usuario.toString();
+        String cod_Cronograma = _cod_Cronograma.toString();
 
-        int linha;
-        linha = db.delete("Usuario", condicao, null);
+        db.beginTransaction();
+        try {
+            db.delete("Cronograma", "cod_Usuario = ?", new String[]{String.valueOf(cod_Usuario)});
+            db.delete("Usuario", "cod_Usuario = ?", new String[]{String.valueOf(cod_Usuario)});
+            db.delete("Cronograma_dia", "cod_Cronograma = ?", new String[]{String.valueOf(cod_Cronograma)});
+            db.delete("Questao", "cod_Usuario = ?", new String[]{String.valueOf(cod_Usuario)});
+            db.delete("Redacao", "cod_Usuario = ?", new String[]{String.valueOf(cod_Usuario)});
 
-        if (linha < 1) {
-            msg = "Erro ao excluir";
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
         }
 
         db.close();

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/containerItem"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_redacao_background"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Título da Redação"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/txtNota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nota: 900"
+        android:textSize="14sp"
+        android:textColor="#CCCCCC" />
+
+    <!-- CAMPO QUE SERÁ EXPANDIDO -->
+    <TextView
+        android:id="@+id/txtAnalise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aqui virá a análise da redação..."
+        android:textSize="14sp"
+        android:visibility="gone"
+        android:paddingTop="8dp"
+        android:textColor="#DDDDDD" />
+</LinearLayout>

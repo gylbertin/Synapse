@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2C2C2C"
-    tools:context=".Tela_Principal">
+    android:background="@drawable/gradient_reverse"
+    tools:context=".Tela_principal.Tela_Principal">
 
     <TextView
         android:id="@+id/textMes"
@@ -19,6 +20,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/fundo_calendario"
+        android:layout_width="409dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/fundo_dias_semana"
+        android:elevation="0dp"
+        android:translationZ="-1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMes" />
 
     <TextView
         android:id="@+id/dia_semana_6"
@@ -60,7 +74,7 @@
         android:id="@+id/dia_semana_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:text="D"
         android:textColor="#626161"
         android:textSize="20sp"
@@ -199,12 +213,33 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_conteudo"
-        android:layout_width="412dp"
-        android:layout_height="221dp"
-        android:layout_marginTop="27dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/transparent"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dia_mes_4"
+        app:layout_constraintTop_toBottomOf="@+id/fundo_calendario"
+        tools:itemCount="4"
         tools:listitem="@layout/item_conteudo_view" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconSize="25dp"
+        app:itemBackground="@drawable/seletor_navigation_background"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

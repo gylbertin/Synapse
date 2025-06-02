@@ -1,11 +1,9 @@
-package com.example.logingit;
+package com.example.logingit.Login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,6 +14,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 // loginapi
+import com.example.logingit.Banco.BancoControllerUsuario;
+import com.example.logingit.Banco.DataBaseBanco;
+import com.example.logingit.Cronograma.Tela_Cronograma;
+import com.example.logingit.R;
+import com.example.logingit.Cadastro.Tela_Cadastro;
+import com.example.logingit.Tela_principal.Tela_Principal;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -25,6 +29,7 @@ import com.google.android.gms.tasks.Task;
 //firebase
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.android.material.button.MaterialButton;
 
@@ -111,9 +116,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
             retorno = false;
         }
-        BancoControllerUsuario db = new BancoControllerUsuario(getBaseContext());
 
-        Cursor dados = db.ConsultaDadosLogin(_email, _senha);
+        Cursor dados = bd.ConsultaDadosLogin(_email, _senha);
 
         if(dados.moveToFirst()) {
             retorno = true;
@@ -145,7 +149,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(this, "Login com Google bem sucedido!", Toast.LENGTH_SHORT).show();
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                        if (user != null) {
+                            Toast.makeText(this, "Login com Google bem sucedido!", Toast.LENGTH_SHORT).show();
+                            String nome = user.getDisplayName();
+                            String email = user.getEmail();
+                            String uid = user.getUid();
+
+                            Cursor dados = bd.ConsultaCodigo(email, uid);
+
+                            if (dados.moveToFirst()) {
+                                int seletor = dados.getColumnIndex("cod_Usuario");
+                                int seletor2 = dados.getColumnIndex("cod_Exame");
+                                _Usuario = dados.getInt(seletor);
+                                cod_Exame = dados.getInt(seletor2);
+
+                                Cursor cronograma = bd.ConsultaCodigoCronograma(_Usuario);
+                                if (cronograma.moveToFirst()) {
+                                    int seletor3 = cronograma.getColumnIndex("cod_Cronograma");
+                                    cod_Cronograma = cronograma.getInt(seletor);
+                                }
+
+                                Intent tela = new Intent(MainActivity.this, Tela_Principal.class);
+                                Bundle parametros = new Bundle();
+                                parametros.putInt("cod_Cronograma", cod_Cronograma);
+                                parametros.putInt("cod_Exame", cod_Exame);
+                                tela.putExtras(parametros);
+                                startActivity(tela);
+
+                            } else {
+                                bd.insereDados(email, nome, uid);
+
+                                Intent tela = new Intent(MainActivity.this, Tela_Cronograma.class);
+                                Bundle parametros = new Bundle();
+                                parametros.putString("email", email);
+                                parametros.putString("senha", uid);
+                                tela.putExtras(parametros);
+                                startActivity(tela);
+                            }
+
+
+                        }
                     } else {
                         Toast.makeText(this, "Erro ao autenticar", Toast.LENGTH_SHORT).show();
                     }
@@ -158,18 +203,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (validaLogin()) {
                 Cursor exame = bd.ConsultaCodigo(txtEmail.toString(), txtSenha.toString());
                 if (exame.moveToFirst()) {
-                    _Usuario = exame.getInt(1);
-                    cod_Exame = exame.getInt(2);
+                    int seletor = exame.getColumnIndex("cod_Usuario");
+                    int seletor2 = exame.getColumnIndex("cod_Exame");
+                    _Usuario = exame.getInt(seletor);
+                    cod_Exame = exame.getInt(seletor2);
                 }
                 Cursor cronograma = bd.ConsultaCodigoCronograma(_Usuario);
                 if (cronograma.moveToFirst()) {
-                    cod_Cronograma = cronograma.getInt(1);
+                    int seletor = cronograma.getColumnIndex("cod_Cronograma");
+                    cod_Cronograma = cronograma.getInt(seletor);
                 }
 
                 Intent tela = new Intent(MainActivity.this, Tela_Principal.class);
                 Bundle parametros = new Bundle();
                 parametros.putInt("cod_Cronograma", cod_Cronograma);
                 parametros.putInt("cod_Exame", cod_Exame);
+                parametros.putInt("cod_Usuario", _Usuario);
                 tela.putExtras(parametros);
                 startActivity(tela);
             }

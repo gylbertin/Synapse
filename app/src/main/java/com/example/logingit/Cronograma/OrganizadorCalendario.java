@@ -1,16 +1,13 @@
-package com.example.logingit;
+package com.example.logingit.Cronograma;
 
-import android.content.Context;
 import android.widget.TextView;
 
+import com.example.logingit.Banco.BancoControllerConteudo;
+
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 public class OrganizadorCalendario {
     BancoControllerConteudo bc;

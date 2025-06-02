@@ -1,139 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/gradient"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- imagem de perfil -->
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="32dp"
-        android:padding="16dp"
-        android:src="@drawable/imagem_perfil" />
-
-    <!-- Nome de usuário -->
-    <LinearLayout
-        android:id="@+id/layout_nome_container"
+    <!-- Conteúdo rola, com espaço no final para não encobrir o BottomNavigation -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/layout_nome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <EditText
-                android:id="@+id/username_edit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:hint="Nome de usuário"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#CCCCCC"
-                android:paddingBottom="4dp"
-                android:layout_marginBottom="2dp"
-                android:enabled="true" />
-
-            <ImageButton
-                android:id="@+id/edit_button"
-                android:layout_width="63dp"
-                android:layout_height="63dp"
-                android:layout_marginStart="8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Editar"
-                android:src="@drawable/ic_lapis"
-                android:visibility="gone" />
-        </LinearLayout>
-
-        <!-- Linha fina abaixo do campo -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#CCCCCC" />
-    </LinearLayout>
-
-    <!-- Botão Salvar -->
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#0500FF"
-        android:text="Salvar"
-        android:textColor="#FFFFFF"
-        android:visibility="visible" />
-
-
-    <!-- card de conquistas -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/fundo_conquista"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Conquistas"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:paddingBottom="80dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal">
+            android:background="@drawable/gradient"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <!-- Conquista -->
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="32dp"
+                android:padding="16dp"
+                android:src="@drawable/imagem_perfil" />
+
             <LinearLayout
-                android:layout_width="113dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:gravity="center_horizontal"
+                android:id="@+id/layout_nome_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="104dp"
-                    android:layout_height="103dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/borda"
-                    android:clipToOutline="true"
-                    android:padding="-2dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_exemploconquista" />
+                <LinearLayout
+                    android:id="@+id/layout_nome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/username_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="Nome de usuário"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#CCCCCC"
+                        android:paddingBottom="4dp"
+                        android:layout_marginBottom="2dp"
+                        android:enabled="true" />
+
+                    <ImageButton
+                        android:id="@+id/edit_button"
+                        android:layout_width="63dp"
+                        android:layout_height="63dp"
+                        android:layout_marginStart="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Editar"
+                        android:src="@drawable/ic_lapis"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#CCCCCC" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#0500FF"
+                android:text="Salvar"
+                android:textColor="#FFFFFF"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/fundo_conquista"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Login"
-                    android:textColor="#BBBBBB"
-                    android:textStyle="italic" />
+                    android:text="Conquistas"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="113dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="104dp"
+                            android:layout_height="103dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/borda"
+                            android:clipToOutline="true"
+                            android:padding="-2dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_exemploconquista" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Login"
+                            android:textColor="#BBBBBB"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/delete_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="#0500FF"
+                android:text="Sair"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
-    <!-- botão remover conta -->
-    <Button
-        android:id="@+id/delete_account"
+    <!-- Bottom Navigation fixo -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#0500FF"
-        android:text="Sair"
-        android:textColor="#FFFFFF" />
-
-</LinearLayout>
+        android:layout_height="64dp"
+        android:layout_gravity="bottom"
+        app:itemBackground="@drawable/seletor_navigation_background"
+        app:itemIconSize="25dp"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_nav_menu" />
+</FrameLayout>
