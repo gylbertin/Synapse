@@ -81,8 +81,10 @@
         android:id="@+id/btnHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_history"
-        tools:layout_editor_absoluteX="331dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_history" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
