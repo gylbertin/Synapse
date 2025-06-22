@@ -1,4 +1,4 @@
-package com.example.logingit;
+package com.example.logingit.Tela_Questao;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.logingit.Banco.BancoControllerAvaliacao;
 import com.example.logingit.Configuracao.Tela_configuracao;
-import com.example.logingit.Tela_Questao.Tela_GeraQuestoes;
-import com.example.logingit.Tela_Questao.Tela_Resolucao;
+import com.example.logingit.Questao;
+import com.example.logingit.R;
+import com.example.logingit.Redacao.Tela_Redacao;
 import com.example.logingit.Tela_principal.Tela_Principal;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

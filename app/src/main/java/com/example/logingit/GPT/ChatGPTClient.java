@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class ChatGPTClient {
-    private static final String API_KEY = "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";
+    private static final String API_KEY = "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";
     private static final String API_URL = "https://api.openai.com/v1/chat/completions";
     private static final OkHttpClient client = new OkHttpClient();
 

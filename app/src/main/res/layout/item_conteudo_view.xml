@@ -8,7 +8,7 @@
 
     <RadioButton
         android:id="@+id/btConteudo"
-        android:layout_width="128dp"
+        android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:maxLines="1"
-        android:ellipsize="end"
+        android:ellipsize="none"
         android:paddingStart="2dp"
         android:paddingEnd="5dp"
         />

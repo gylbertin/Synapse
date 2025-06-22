@@ -1,7 +1,10 @@
 package com.example.logingit.Tela_Questao;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -15,7 +18,7 @@ import com.example.logingit.Banco.BancoControllerAvaliacao;
 import com.example.logingit.Configuracao.Tela_configuracao;
 import com.example.logingit.GPT.ChatGPTClient;
 import com.example.logingit.R;
-import com.example.logingit.Tela_Redacao;
+import com.example.logingit.Redacao.Tela_Redacao;
 import com.example.logingit.Tela_principal.Tela_Principal;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -174,6 +177,9 @@ public class Tela_Resolucao extends AppCompatActivity {
             RadioButton rb = new RadioButton(this);
             rb.setText(questao.alternativas.get(i));
             rb.setId(i);
+            rb.setTextColor(Color.WHITE);
+            rb.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            rb.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
             grupoAlternativas.addView(rb);
         }
 

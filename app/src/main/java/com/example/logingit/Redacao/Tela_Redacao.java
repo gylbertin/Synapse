@@ -1,4 +1,4 @@
-package com.example.logingit;
+package com.example.logingit.Redacao;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,8 +16,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.logingit.Banco.BancoControllerAvaliacao;
 import com.example.logingit.Configuracao.Tela_configuracao;
-import com.example.logingit.GPT.ChatGPTApi;
 import com.example.logingit.GPT.ChatGPTClient;
+import com.example.logingit.R;
 import com.example.logingit.Tela_Questao.Tela_GeraQuestoes;
 import com.example.logingit.Tela_principal.Tela_Principal;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -123,9 +123,9 @@ public class Tela_Redacao extends AppCompatActivity {
     }
 
     private void gerarTemaRedacao() {
-        ChatGPTApi.enviarPergunta("Gere um tema de redação estilo ENEM", new ChatGPTApi.ChatGPTCallback() {
+        ChatGPTClient.enviarMensagem("Gere um tema de redação estilo ENEM", new ChatGPTClient.ChatGPTCallback() {
             @Override
-            public void onSuccess(String resposta) {
+            public void onResponse(String resposta) {
                 runOnUiThread(() -> txtTema.setText(resposta));
             }
 
@@ -137,20 +137,22 @@ public class Tela_Redacao extends AppCompatActivity {
     }
 
     private void gerarAnalise(String tema, String redacao) {
-        ChatGPTApi.enviarPergunta("Avalie a seguinte redação conforme os critérios do ENEM. Dê notas de 0 a 200 para cada uma das 5 competências, explique cada uma e forneça a nota final. tema: " + tema + "\n\nRedação:\n" + redacao, new ChatGPTApi.ChatGPTCallback() {
-            @Override
-            public void onSuccess(String resposta) {
-                Boolean sucesso = db.atualizarAvaliacaoMaisRecente(resposta);
+        String prompt = "Avalie a seguinte redação conforme os critérios do ENEM. " +
+                "Dê notas de 0 a 200 para cada uma das 5 competências, explique cada uma e forneça a nota final.\n\n" +
+                "Tema: " + tema + "\n\nRedação:\n" + redacao;
 
-                if (sucesso) {
-                    runOnUiThread(() ->
-                            Toast.makeText(Tela_Redacao.this, "Avaliação salva com sucesso!", Toast.LENGTH_SHORT).show()
-                    );
-                } else {
-                    runOnUiThread(() ->
-                            Toast.makeText(Tela_Redacao.this, "Erro ao salvar avaliação no banco.", Toast.LENGTH_SHORT).show()
-                    );
-                }
+        ChatGPTClient.enviarMensagem(prompt, new ChatGPTClient.ChatGPTCallback() {
+            @Override
+            public void onResponse(String resposta) {
+                boolean sucesso = db.atualizarAvaliacaoMaisRecente(resposta);
+
+                runOnUiThread(() -> {
+                    if (sucesso) {
+                        Toast.makeText(Tela_Redacao.this, "Avaliação salva com sucesso!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(Tela_Redacao.this, "Erro ao salvar avaliação no banco.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
@@ -160,6 +162,5 @@ public class Tela_Redacao extends AppCompatActivity {
                 );
             }
         });
-
     }
 }

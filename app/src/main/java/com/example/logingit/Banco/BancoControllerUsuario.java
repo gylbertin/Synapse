@@ -74,10 +74,11 @@ public class BancoControllerUsuario {
     public Cursor ConsultaDadosLogin(String _email, String _senha){
         Cursor cursor;
         String[] campos = {"cod_Usuario", "nome_Usuario", "email", "senha"};
-        String where = "email = '" + _email + "' and senha = '" + _senha + "'";
+        String where = "email = ? AND senha = ?";
+        String[] selectionArgs = {_email, _senha};
         db = banco.getReadableDatabase();
 
-        cursor = db.query("Usuario", campos, where, null, null, null, null, null);
+        cursor = db.query("Usuario", campos, where, selectionArgs, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
@@ -98,8 +99,13 @@ public class BancoControllerUsuario {
         } else {
             Log.e("ConsultaCodigo", "Nenhum dado encontrado ou erro na query.");
         }
-        db.close();
         return cursor;
+    }
+
+    public void close() {
+        if(db != null && db.isOpen()) {
+            db.close();
+        }
     }
 
     public Cursor ConsultaCodigoCronograma (Integer _cod_Usuario) {
@@ -160,7 +166,7 @@ public class BancoControllerUsuario {
 
         cursor = db.query("Usuario", campos, where, null, null, null, null);
         if (cursor.moveToFirst()) {
-            int seletor = cursor.getColumnIndex("cod_Usuario");
+            int seletor = cursor.getColumnIndex("nome_Usuario");
             nome = cursor.getString(seletor);
         }
         db.close();

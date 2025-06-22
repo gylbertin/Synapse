@@ -16,8 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.logingit.Banco.BancoControllerConteudo;
 import com.example.logingit.R;
 import com.example.logingit.Configuracao.Tela_configuracao;
-import com.example.logingit.Tela_Historico_Questao;
-import com.example.logingit.Tela_Redacao;
+import com.example.logingit.Redacao.Tela_Redacao;
 import com.example.logingit.Tela_principal.Conteudo;
 import com.example.logingit.Tela_principal.Tela_Principal;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,7 +29,6 @@ public class Tela_GeraQuestoes extends AppCompatActivity {
     EditText editQuantidade;
     Button btnGerar;
     ImageButton btnHistory;
-    BancoControllerConteudo bc;
     List<Conteudo> listaConteudos;
     List<Materia> listaMaterias;
     private BottomNavigationView bottom_navigation;
@@ -144,14 +142,18 @@ public class Tela_GeraQuestoes extends AppCompatActivity {
     };
 
     private void carregarMaterias() {
+        BancoControllerConteudo bc = new BancoControllerConteudo(this);
         listaMaterias = bc.getTodasMaterias();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,listaMaterias.stream().map(Materia::getNome).collect(Collectors.toList()));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item,listaMaterias.stream().map(Materia::getNome).collect(Collectors.toList()));
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerMateria.setAdapter(adapter);
     }
 
-    public  void carregarConteudos(int idMateria) {
+    public void carregarConteudos(int idMateria) {
+        BancoControllerConteudo bc = new BancoControllerConteudo(this);
         listaConteudos = bc.getConteudoPorMateria(idMateria);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, listaConteudos.stream().map(Conteudo::getNome).collect(Collectors.toList()));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, listaConteudos.stream().map(Conteudo::getNome).collect(Collectors.toList()));
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerConteudo.setAdapter(adapter);
     }
 }

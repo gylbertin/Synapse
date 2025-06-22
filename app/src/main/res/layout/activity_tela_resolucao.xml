@@ -10,10 +10,11 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#2C2C2C"
+        android:background="@drawable/gradient_reverse"
         android:orientation="vertical"
         android:padding="16dp"
-        android:layout_marginBottom="80dp">
+        android:layout_marginBottom="0dp"
+        >
 
         <TextView
             android:id="@+id/textPergunta"
@@ -22,20 +23,28 @@
             android:text="Pergunta carregando..."
             android:textSize="18sp"
             android:textColor="#FFFFFF"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="60dp"
+            />
 
         <RadioGroup
             android:id="@+id/grupoAlternativas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:dividerPadding="5dp"
+            android:background="@drawable/fundo_dias_semana"
+            />
 
         <Button
             android:id="@+id/botaoConfirmar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Confirmar"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#0500FF"
+            />
 
         <Button
             android:id="@+id/botaoProxima"
@@ -43,17 +52,25 @@
             android:layout_height="wrap_content"
             android:text="Próxima"
             android:visibility="gone"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="12dp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#0500FF"
+            />
     </LinearLayout>
 
     <!-- BottomNavigationView fixo no rodapé -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="66dp"
         android:layout_gravity="bottom"
-        app:itemBackground="@drawable/seletor_navigation_background"
-        app:itemIconSize="25dp"
+        android:background="#121212"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconSize="30dp"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/bottom_nav_menu" />
+        app:itemIconTint="@color/nav_icon_color"
+        app:itemTextColor="@color/nav_icon_color"
+        app:itemPaddingTop="0dp"
+        app:itemPaddingBottom="0dp"
+        />
 </FrameLayout>

@@ -1,4 +1,4 @@
-package com.example.logingit;
+package com.example.logingit.Tela_Questao;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,13 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.logingit.Questao;
+import com.example.logingit.R;
+
 import java.util.List;
 
 public class QuestoesAdapter extends RecyclerView.Adapter<QuestoesAdapter.ViewHolder> {
-    private List<Questao> lista;
+    private List<com.example.logingit.Questao> lista;
     private Context context;
 
-    public QuestoesAdapter(List<Questao> lista, Context context) {
+    public QuestoesAdapter(List<com.example.logingit.Questao> lista, Context context) {
         this.lista = lista;
         this.context = context;
     }

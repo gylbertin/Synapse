@@ -1,4 +1,4 @@
-package com.example.logingit;
+package com.example.logingit.Redacao;
 
 public class Redacao {
     private int id;

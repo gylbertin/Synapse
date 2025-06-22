@@ -137,10 +137,14 @@ public class Tela_Cronograma extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(this, resultado,Toast.LENGTH_LONG);
 
             Cursor codigo = bd.ConsultaCodigoCronograma(cod_Usuario);
-            if (codigo.moveToFirst()) {
+            if (codigo != null && codigo.moveToFirst()) {
                 int seletor = codigo.getColumnIndex("cod_Cronograma");
                 cod_Cronograma = codigo.getInt(seletor);
+            } else {
+                Toast.makeText(this, "Não foi possível criar o cronograma", Toast.LENGTH_LONG).show();
+                return;
             }
+
 
             for (DayOfWeek dia : DayOfWeek.values()) {
                 int estudo = 0;

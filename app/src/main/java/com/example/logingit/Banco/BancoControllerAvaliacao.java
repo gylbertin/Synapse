@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.logingit.GPT.ChatGPTApi;
 import com.example.logingit.Questao;
-import com.example.logingit.Redacao;
+import com.example.logingit.Redacao.Redacao;
 
 import java.util.ArrayList;
 import java.util.List;

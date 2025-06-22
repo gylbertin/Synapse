@@ -20,7 +20,7 @@ import com.example.logingit.Cronograma.OrganizadorCalendario;
 import com.example.logingit.R;
 import com.example.logingit.Tela_Questao.Tela_GeraQuestoes;
 import com.example.logingit.Configuracao.Tela_configuracao;
-import com.example.logingit.Tela_Redacao;
+import com.example.logingit.Redacao.Tela_Redacao;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.SimpleDateFormat;
@@ -51,6 +51,13 @@ public class Tela_Principal extends AppCompatActivity implements View.OnClickLis
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        Intent tela = getIntent();
+        Bundle parametro = tela.getExtras();
+        cod_Cronograma = parametro.getInt("cod_Cronograma");
+        cod_Exame = parametro.getInt("cod_Exame");
+        cod_Usuario = parametro.getInt("cod_Usuario");
+
         textMes = findViewById(R.id.textMes);
         bottom_navigation = findViewById(R.id.bottom_navigation);
 
@@ -105,30 +112,30 @@ public class Tela_Principal extends AppCompatActivity implements View.OnClickLis
             if (itemId == R.id.nav_home) {
                 return true;
             } else if (itemId == R.id.nav_questoes) {
-                Intent tela = new Intent(Tela_Principal.this, Tela_GeraQuestoes.class);
+                Intent intent = new Intent(Tela_Principal.this, Tela_GeraQuestoes.class);
                 Bundle parametros = new Bundle();
                 parametros.putInt("cod_Usuario",cod_Usuario);
                 parametros.putInt("cod_Cronograma", cod_Cronograma);
-                tela.putExtras(parametros);
-                startActivity(tela);
+                intent.putExtras(parametros);
+                startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             } else if (itemId == R.id.nav_perfil) {
-                Intent tela = new Intent(Tela_Principal.this, Tela_configuracao.class);
+                Intent intent = new Intent(Tela_Principal.this, Tela_configuracao.class);
                 Bundle parametros = new Bundle();
                 parametros.putInt("cod_Usuario",cod_Usuario);
                 parametros.putInt("cod_Cronograma", cod_Cronograma);
-                tela.putExtras(parametros);
-                startActivity(tela);
+                intent.putExtras(parametros);
+                startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             } else if (itemId == R.id.nav_Redacao) {
-                Intent tela = new Intent(Tela_Principal.this, Tela_Redacao.class);
+                Intent intent = new Intent(Tela_Principal.this, Tela_Redacao.class);
                 Bundle parametros = new Bundle();
                 parametros.putInt("cod_Usuario",cod_Usuario);
                 parametros.putInt("cod_Cronograma", cod_Cronograma);
-                tela.putExtras(parametros);
-                startActivity(tela);
+                intent.putExtras(parametros);
+                startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }
@@ -143,12 +150,6 @@ public class Tela_Principal extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
-        Intent tela = getIntent();
-        Bundle parametro = tela.getExtras();
-        cod_Cronograma = parametro.getInt("cod_Cronograma");
-        cod_Exame = parametro.getInt("cod_Exame");
-        cod_Usuario = parametro.getInt("cod_Usuario");
-
         bancoController = new BancoControllerUsuario(this);
 
         Cursor horas = bancoController.ConsultaHoraDiarias(cod_Cronograma, cod_Usuario);
@@ -160,7 +161,7 @@ public class Tela_Principal extends AppCompatActivity implements View.OnClickLis
 
         bd = new BancoControllerConteudo(this);
 
-        Map<String, List<Conteudo>> plano = bd.distruibuirConteudo(horas_diarias);
+        Map<String, List<Conteudo>> plano = bd.distruibuirConteudo(horas_diarias, cod_Cronograma);
 
         if (v.getId()==R.id.dia_mes_1) {
             Calendar calendar = Calendar.getInstance();

@@ -81,16 +81,17 @@ public class BancoControllerConteudo {
         return lista;
     }
 
-    public boolean isDiaPermitido(String data) {
+    public boolean isDiaPermitido(String data, int cod_Cronograma) {
         db = banco.getReadableDatabase();
         boolean permitido = false;
         String dia = data;
-        Cursor cursor = db.rawQuery("SELECT dia_Estudo FROM Cronograma_dia WHERE dia_Semana = ?", new String[]{dia});
+        Cursor cursor = db.rawQuery("SELECT dia_Estudo FROM Cronograma_dia WHERE dia_Semana = ? AND cod_Cronograma = ?", new String[]{dia, String.valueOf(cod_Cronograma)});
 
         if (cursor.moveToFirst()) {
             permitido = cursor.getInt(0) == 1;
         }
         cursor.close();
+        db.close();
         return permitido;
     }
 
@@ -99,17 +100,18 @@ public class BancoControllerConteudo {
         db = banco.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM Materia",null);
-        if (cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             int seletor1 = cursor.getColumnIndex("cod_Materia");
             int seletor2 = cursor.getColumnIndex("nome_Materia");
             int seletor3 = cursor.getColumnIndex("cor");
             Materia materia = new Materia();
             materia.id = cursor.getInt(seletor1);
             materia.nome = cursor.getString(seletor2);
-            materia.cor = cursor.getString(seletor2);
+            materia.cor = cursor.getString(seletor3);
             lista.add(materia);
         }
         cursor.close();
+        db.close();
         return lista;
     }
 
@@ -132,7 +134,7 @@ public class BancoControllerConteudo {
         return lista;
     }
 
-    public Map<String, List<Conteudo>> distruibuirConteudo(int limiteDiario) {
+    public Map<String, List<Conteudo>> distruibuirConteudo(int limiteDiario, int cod_Cronograma) {
 
         Map<String, List<Conteudo>> planejamento = new LinkedHashMap<>();
 
@@ -143,7 +145,7 @@ public class BancoControllerConteudo {
         int posicaoAtual = 0;
 
         for (String dia : diasSemana) {
-            if (!isDiaPermitido(dia)) {
+            if (!isDiaPermitido(dia, cod_Cronograma)) {
                 continue;
             }
 

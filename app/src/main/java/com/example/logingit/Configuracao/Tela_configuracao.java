@@ -14,9 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.logingit.Banco.BancoController;
 import com.example.logingit.Banco.BancoControllerUsuario;
+import com.example.logingit.Login.MainActivity;
 import com.example.logingit.R;
 import com.example.logingit.Tela_Questao.Tela_GeraQuestoes;
-import com.example.logingit.Tela_Redacao;
+import com.example.logingit.Redacao.Tela_Redacao;
 import com.example.logingit.Tela_principal.Tela_Principal;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -29,7 +30,7 @@ public class Tela_configuracao extends AppCompatActivity {
     private EditText usernameEdit;
     private ImageButton editButton;
     private Button saveButton;
-    private Button deleteButton;
+    private Button deleteButton, btSair;
     private SharedPreferences prefs;
     private Uri imageUri = null;
     private int cod_Usuario, cod_Cronograma;
@@ -49,7 +50,7 @@ public class Tela_configuracao extends AppCompatActivity {
         cod_Cronograma = dados.getInt("cod_Cronograma");
 
 
-        BancoControllerUsuario bancoUsuario = new BancoControllerUsuario(this);
+
         BancoController banco = new BancoController(this);
 
         // Conectando os elementos do layout
@@ -58,6 +59,7 @@ public class Tela_configuracao extends AppCompatActivity {
         editButton = findViewById(R.id.edit_button);
         saveButton = findViewById(R.id.save_button);
         deleteButton = findViewById(R.id.delete_account);
+        btSair = findViewById(R.id.btSair);
         bottom_navigation = findViewById(R.id.bottom_navigation);
 
         prefs = getSharedPreferences("userPrefs", MODE_PRIVATE);
@@ -127,7 +129,25 @@ public class Tela_configuracao extends AppCompatActivity {
             String msg = banco.excluirDados(cod_Usuario,cod_Cronograma);
             usernameEdit.setText("");
             profileImage.setImageResource(R.drawable.imagem_perfil);
-            Toast.makeText(this, "Conta removida", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+
+            prefs.edit().clear().apply();
+
+            // Redireciona para a tela de login
+            Intent tela = new Intent(Tela_configuracao.this, MainActivity.class);
+            tela.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | tela.FLAG_ACTIVITY_CLEAR_TASK); // limpa o histórico
+            startActivity(tela);
+        });
+
+        btSair.setOnClickListener(v -> {
+            usernameEdit.setText("");
+            profileImage.setImageResource(R.drawable.imagem_perfil);
+
+            prefs.edit().clear().apply();
+
+            Intent tela = new Intent(Tela_configuracao.this, MainActivity.class);
+            tela.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | tela.FLAG_ACTIVITY_CLEAR_TASK); // limpa o histórico
+            startActivity(tela);
         });
 
         // Clique na imagem de perfil
@@ -157,12 +177,15 @@ public class Tela_configuracao extends AppCompatActivity {
     private void saveProfileData() {
         String name = usernameEdit.getText().toString();
 
+        BancoControllerUsuario bancoUsuario = new BancoControllerUsuario(this);
+
         String msg = bancoUsuario.trocaNome(name,cod_Usuario);
 
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     private void loadProfileData() {
+        BancoControllerUsuario bancoUsuario = new BancoControllerUsuario(this);
         String name = bancoUsuario.puxaNome(cod_Usuario);
         usernameEdit.setText(name);
 

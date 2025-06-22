@@ -116,16 +116,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
             retorno = false;
         }
+        bd = new BancoControllerUsuario(this);
 
         Cursor dados = bd.ConsultaDadosLogin(_email, _senha);
 
-        if(dados.moveToFirst()) {
+        if(dados.moveToFirst() && dados != null) {
             retorno = true;
         } else {
             msg = "O E-mail / Senha não estão cadastrados no sistema, CADASTRE-SE";
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
             retorno = false;
         }
+
+        if (dados != null) dados.close();
+        bd.close();
         return retorno;
     }
 
@@ -201,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v.getId()==R.id.btnLogin){
             if (validaLogin()) {
-                Cursor exame = bd.ConsultaCodigo(txtEmail.toString(), txtSenha.toString());
+                Cursor exame = bd.ConsultaCodigo(txtEmail.getText().toString(), txtSenha.getText().toString());
                 if (exame.moveToFirst()) {
                     int seletor = exame.getColumnIndex("cod_Usuario");
                     int seletor2 = exame.getColumnIndex("cod_Exame");

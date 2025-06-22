@@ -15,13 +15,13 @@
         android:theme="@style/Theme.Logingit"
         tools:targetApi="31">
         <activity
-            android:name=".Tela_Historico_Questao"
+            android:name=".Tela_Questao.Tela_Historico_Questao"
             android:exported="false" />
         <activity
-            android:name=".Tela_Historico_redacoes"
+            android:name=".Redacao.Tela_Historico_redacoes"
             android:exported="false" />
         <activity
-            android:name=".Tela_Redacao"
+            android:name=".Redacao.Tela_Redacao"
             android:exported="false" />
         <activity
             android:name=".Tela_Questao.Tela_Resolucao"
